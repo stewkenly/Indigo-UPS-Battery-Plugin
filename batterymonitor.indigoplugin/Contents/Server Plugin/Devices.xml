@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Devices>
+
+	<Device type="custom" id="BatteryMonitor">
+		<Name>Battery and UPS Monitor</Name>
+		<ConfigUI>
+			<SupportURL>http://www.schollnick.net</SupportURL>
+			<Field id="exampleLabel" type="label">
+				<Label>The Battery and UPS Monitor does not have any configurable settings.</Label>
+			</Field>
+		</ConfigUI>
+
+		<UiDisplayStateId>BatteryLevel</UiDisplayStateId>
+
+		<States>
+			<State id="Model">
+				<ValueType>String</ValueType>
+				<TriggerLabel>The Model of Battery or UPS</TriggerLabel>
+				<ControlPageLabel>The Model of Battery or UPS</ControlPageLabel>
+			</State>
+		
+			<State id="ACPower">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>AC Power is available</TriggerLabel>
+				<ControlPageLabel>AC Power is available</ControlPageLabel>
+			</State>
+
+			<State id="PowerSource">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Power Source</TriggerLabel>
+				<ControlPageLabel>Power Source</ControlPageLabel>
+			</State>
+
+			<State id="Charging">
+				<ValueType>Boolean</ValueType>
+				<TriggerLabel>Battery is being Charged</TriggerLabel>
+				<ControlPageLabel>Battery is being Charged</ControlPageLabel>
+			</State>
+
+			<State id="BatteryLevel">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Battery Power Level (Percentage)</TriggerLabel>
+				<ControlPageLabel>Battery Power Level (Percentage)</ControlPageLabel>
+			</State>
+			
+			<State id="BatteryTimeRemaining">
+				<ValueType>Integer</ValueType>
+				<TriggerLabel>Battery Time Remaining (Seconds)</TriggerLabel>
+				<ControlPageLabel>Battery Time Remaining (Seconds)</ControlPageLabel>
+			</State>
+			
+
+			<State id="TimeDateStamp">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Time Date Stamp for Last Battery Check</TriggerLabel>
+				<ControlPageLabel>Time Date Stamp for Last Battery Check</ControlPageLabel>
+			</State>
+		</States>
+	</Device>
+
+</Devices>
