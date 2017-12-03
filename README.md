@@ -1,4 +1,8 @@
-# What is Battery & UPS Monitor?
+# What is Indigo?
+
+Indigo is the Home Automation Platform made by Indigo Domotics (http://www.indigodomo.com).  This HA platform is an Macintosh based software, but support Insteon, X10, and Zwave home automation devices.
+
+# What is Battery & UPS Monitor plugin (For Indigo)?
 
 The Battery & UPS Monitor plugin will allow Indigo to monitor any UPS that can natively connect to Mac OS X (typically through USB).  This plugin uses the UPS support built-in to the Energy Saver System Preference & Mac OS X, to monitor the status of your UPS and/or Laptop battery.
 
@@ -13,7 +17,7 @@ This is the first version to use the Indigo Plugin Store.  If this does not auto
 
 
 ### Manual Installation
-1) Open the "Add to Plugin Directory" folder, and double click on the BatteryMonitor.indigoPlugin.  Indigo will open, and offer to install the plugin or alternatively upgrade an existing plugin. 
+1) Open the "Add to Plugin Directory" folder, and double click on the BatteryMonitor.indigoPlugin.  Indigo will open, and offer to install the plugin or alternatively upgrade an existing plugin.
 
 2) Restart the Indigo Server
 
@@ -28,7 +32,7 @@ For issues or questions, please contact Benjamin@schollnick.net.
 
 ## Donations:
 
-To help fund the continued development of this plugin...  Please consider donating. 
+To help fund the continued development of this plugin...  Please consider donating.
 
 At this time my software is free, including the Indigo Web Plugin’s and attachment scripts…
 
