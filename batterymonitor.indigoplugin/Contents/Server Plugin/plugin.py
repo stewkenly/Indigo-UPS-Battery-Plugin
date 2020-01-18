@@ -19,10 +19,6 @@ plugin_id 	= "com.schollnick.indigoplugin.BatteryMonitor"
 plugin_name = "BatteryMonitor"
 plugin_manual = ""
 
-#version_check_site = r'http://www.indigo-plugins.com'
-#version_check_url = version_check_site + "/VersionCheck/%s" % plugin_id
-
-
 current_device_version = 4
 
 
@@ -59,25 +55,9 @@ class Plugin(indigo.PluginBase):
 		#	Load settings from Indigo Database
 		#
 		self.debug = self.pluginPrefs.get("showDebugInfo", False)
-
 		self.debugLog ( "Debug Mode is On (Only recommended for Testing Purposes)")
 
 
-# 	def	VersionCheck ( self ):
-# 		"""
-# 		#	Run a VersionCheck to help ensure that the plugin is up to date
-# 		"""
-# 		import urllib2
-# 		try:
-# 			data = urllib2.urlopen( version_check_url ).read()
-# 			version_found, update_url, plugin_name = data.split(",")
-# 			self.debugLog ("Version Check Server reports %s is available for %s." % (version_found, self.pluginDisplayName) )
-# 			if float(version_found) > float(self.pluginVersion):
-# 				indigo.server.log ( "A New Version of %s v.%s is available.  You can download the upgrade from %s" % (self.pluginDisplayName, version_found, update_url), type="Upgrade", isError=True )
-# 			else:
-# 				self.debugLog ("\tYou are currently running the release version, or a newer version, of %s" % self.pluginDisplayName)
-# 		except:
-# 			indigo.server.log ("Unable to reach update server.", isError = True)
 
 	########################################
 	def shutdown(self):
@@ -168,22 +148,22 @@ class Plugin(indigo.PluginBase):
 		ups_model = data[0]
 		data = data[1].split (";")
 		percentage = data[0][0:-1]#data[1][0:percent_locale]
-		charging = not data[1].endswith ("discharging")
+		charging = data[1].find("discharging") == -1
 		if not charging:
 			time	= data[2][0:data[2].find(":")+3].strip()
-			min		= data[2][0:time.find(":")+1]
-			sec		= data[2][time.find(":")+2:-10]
+			hours	= data[2][0:time.find(":")+1]
+			min		= data[2][time.find(":")+2:time.find(":")+4]
 		else:
 			time = 0
+			hours  = 0
 			min  = 0
-			sec  = 0
 
-		return (power_status, ups_model, charging, percentage, time, min, sec)
+		return (power_status, ups_model, charging, percentage, time, hours, min)
 
 	def runConcurrentThread(self):
 		try:
 			while self.stopThread == False:
-				power_status, ups_model, charging, percentage, timestring, min, sec = self.get_battery_status ()
+				power_status, ups_model, charging, percentage, timestring, hours, min = self.get_battery_status ()
 				if self.pluginPrefs["SupressLogging"] == True and charging:
 					pass
 				else:
@@ -214,8 +194,8 @@ class Plugin(indigo.PluginBase):
 						if BatteryMonitor.states["BatteryLevel"] <> percentage:
 							BatteryMonitor.updateStateOnServer ( "BatteryLevel", percentage)
 
-						if BatteryMonitor.states["BatteryTimeRemaining"] <> int(min)*60 + int(sec):
-							BatteryMonitor.updateStateOnServer ( "BatteryTimeRemaining", int(min)*60 + int(sec) )
+						if BatteryMonitor.states["BatteryTimeRemaining"] <> int(hours)*60 + int(min):
+							BatteryMonitor.updateStateOnServer ( "BatteryTimeRemaining", int(hours)*60 + int(min) )
 
 						if BatteryMonitor.states["PowerSource"] <> power_status:
 							BatteryMonitor.updateStateOnServer ( "PowerSource", power_status)
