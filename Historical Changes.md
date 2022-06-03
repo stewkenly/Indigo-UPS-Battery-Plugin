@@ -12,3 +12,11 @@
 
     - v1.04 Public Release 12/03/2017
         - First version available on Indigo Plugin Store
+
+    - v1.05 FlyingDiver fork, 1/18/2020
+        - Fixed parsing to work with current MacOS X versions.
+
+    - v2022.0.0 FlyingDiver fork, 6/2/2022
+        - Updated to Python3 for Indigo 2022.1+
+       
+

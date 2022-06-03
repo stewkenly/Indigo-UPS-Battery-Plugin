@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+BatteryMonitor.indigoplugin/.idea/
+
+.DS_Store
